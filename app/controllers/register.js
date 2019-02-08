@@ -16,8 +16,11 @@ module.exports.register = function (application, request, response){
         return;
     }
        
-    var usersDAO = new application.app.models.UsersDAO(request);
+    var usersDAO = new application.app.models.usersDAO(request);
+    var gameDAO = new application.app.models.gameDAO(request);
+
     usersDAO.insertUser(formData);
+    gameDAO.generateParameters(formData.user);
 
     response.send("Test ok");
 }

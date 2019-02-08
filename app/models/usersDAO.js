@@ -30,4 +30,4 @@ module.exports = function(){
     return UsersDAO;
 }
 
-// modulo 15 => 89 in 16.50 min
+// modulo 17 => 102

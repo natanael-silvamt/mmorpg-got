@@ -11,6 +11,6 @@ module.exports.authenticate = function (application, request, response) {
         response.render("index", {validation: errors});
         return;
     }
-    var usersDAO = new application.app.models.UsersDAO(request);
+    var usersDAO = new application.app.models.usersDAO(request);
     usersDAO.authenticate(formData, request, response);
 }
