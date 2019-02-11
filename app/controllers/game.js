@@ -9,6 +9,14 @@ module.exports.gameHome = function (application, request, response) {
 
 module.exports.exit = function(application, request, response){
     request.session.destroy(function(error){
-        response.render("index", {validation: {}})
+        response.render("index", {validation: {}});
     });
+}
+
+module.exports.suditos = function(application, request, response){
+        response.render("villagers", {validation: {}});
+}
+
+module.exports.parchment = function(application, request, response){
+        response.render("parchment", {validation: {}});
 }
