@@ -17,11 +17,11 @@ gameDAO.prototype.generateParameters = function(user){
     });
 }
 
-gameDAO.prototype.startGame = function(response, user, home){
+gameDAO.prototype.startGame = function(response, user, home, invalid_command){
     this._request.db.collection("Game", function(error, collection){
         if(error){ return console.dir(error); }
         collection.find({user: user}).toArray(function(error, result){
-            response.render('game', {img_home: home, game: result[0]});
+            response.render('game', {img_home: home, game: result[0], invalid_command: invalid_command});
         });
     });
 }

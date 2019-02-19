@@ -21,6 +21,7 @@
 				});
 
 				$('#btn_suditos').click(function(){
+					$('#msg_errors').hide();
 					$.ajax({
 						url: '/suditos',
 						method: "get",
@@ -31,6 +32,7 @@
 				});
 
 				$('#btn_parchment').click(function(){
+					$('#msg_errors').hide();
 					$.ajax({
 						url: '/parchment',
 						method: "get",
@@ -55,6 +57,12 @@
 		</nav>
 
 	    <div class="container">
+
+				<% if(invalid_command == 'S') { %>
+					<div class="alert alert-danger" id="msg_errors">
+						<strong>Operação inválida, verifique se todos os campos foram informados.</strong>
+					</div>				
+				<% } %>
 	    	
 			<div class="row">
 	    		<div class="col-sm-3 casa">
