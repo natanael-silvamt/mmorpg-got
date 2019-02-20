@@ -26,19 +26,32 @@ gameDAO.prototype.startGame = function(response, user, home, msg){
     });
 }
 
-gameDAO.prototype.action = function(obejectAction){
-    this._request.db.collection("Action", function(error, collection){
+gameDAO.prototype.action = function(objectAction, request){
+    request.db.collection("Action", function(error, collection){
         if(error){ return console.dir(error); }
         var date = new Date();
         var time = null;
-        switch(parseInt(obejectAction.action)){
+        switch(parseInt(objectAction.action)){
             case 1: time = 1 * 60 * 60000; break;
             case 2: time = 2 * 60 * 60000; break;
             case 3: time = 5 * 60 * 60000; break;
             case 4: time = 5 * 60 * 60000; break;
         }
-        obejectAction.action_end_in = date.getTime() + time;
-        collection.insert(obejectAction);
+        objectAction.action_end_in = date.getTime() + time;
+        collection.insert(objectAction);
+    });
+
+    request.db.collection("Game", function(error, collection){
+        if(error){return console.dir(error);}
+        var coins = null;
+        switch(parseInt(objectAction.action)){
+            case 1: coins = -2 * parseInt(objectAction.quantity); break;
+            case 2: coins = -3 * parseInt(objectAction.quantity); break;
+            case 3: coins = -1 * parseInt(objectAction.quantity); break;
+            case 4: coins = -1 * parseInt(objectAction.quantity); break;
+        }
+     //   console.log(this._request);
+        collection.update({'user': objectAction.user}, {'$inc': {'coin': coins}});
     });
 }
 

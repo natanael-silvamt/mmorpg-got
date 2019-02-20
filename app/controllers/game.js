@@ -51,6 +51,6 @@ module.exports.order_action_sudito = function(application, request, response){
 
     var gameDAO = new application.app.models.gameDAO(request);
     formData.user = request.session.user;
-    gameDAO.action(formData);
+    gameDAO.action(formData, request);
     response.redirect('game?msg=S');
 }
