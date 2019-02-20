@@ -30,7 +30,8 @@ module.exports.parchment = function(application, request, response){
         response.send("User must sign in.");
         return;
     } 
-    response.render("parchment", {validation: {}});
+    var gameDAO = new application.app.models.gameDAO(request);
+    gameDAO.getActions(request.session.user, response);
 }
 
 module.exports.order_action_sudito = function(application, request, response){
