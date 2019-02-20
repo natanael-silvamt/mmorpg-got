@@ -38,10 +38,21 @@
 						method: "get",
 						success: function(data){
 							$('#actions').html(data);
+							clearTimeout(timerId);
+							stopwatch();
 						}
 					});
 				});
 			});
+			var timerId = null;
+			function stopwatch(){
+				$('.time_left').each(function(){
+					var seconds = $(this).html();
+					var current_seconds = parseInt(seconds) - 1;
+					$(this).html(current_seconds);
+				});
+				timerId = setTimeout('stopwatch()', 1000);
+			}
 		</script>
 
 	</head>

@@ -45,7 +45,9 @@ gameDAO.prototype.action = function(obejectAction){
 gameDAO.prototype.getActions = function(user, response){
     this._request.db.collection("Action", function(error, collection){
          if(error){ return console.dir(error); }
-         collection.find({"user": user}).toArray(function(error, result){
+         var date = new Date();
+         var nowadays = date.getTime();
+         collection.find({"user": user, "action_end_in": {'$gt': nowadays}}).toArray(function(error, result){
              response.render("parchment", {actions: result});
          });
     });
