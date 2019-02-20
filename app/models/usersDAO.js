@@ -29,5 +29,3 @@ UsersDAO.prototype.authenticate = function(formData, request, response){
 module.exports = function(){
     return UsersDAO;
 }
-
-// modulo 17 => 111
