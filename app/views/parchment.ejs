@@ -16,7 +16,7 @@
 				var seconds_left = Math.round((actions[i].action_end_in - nowadays) / 1000);
 			%>
 			<li>
-				<%= actions[i].quantity %> <%= txt_actions %> - <small>restam <span class="time_left"><%= seconds_left %></span> segundos - <a href="#">revogar ordem</a></small>
+				<%= actions[i].quantity %> <%= txt_actions %> - <small>restam <span class="time_left"><%= seconds_left %></span> segundos - <a href="/revoke_action?action_id=<%=actions[i]._id%>">revogar ordem</a></small>
 			</li>
 		<% } %>
 	</ul>

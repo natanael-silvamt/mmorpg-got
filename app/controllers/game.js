@@ -54,3 +54,9 @@ module.exports.order_action_sudito = function(application, request, response){
     gameDAO.action(formData, request);
     response.redirect('game?msg=S');
 }
+
+module.exports.revoke_action = function(application, request, response){
+    var url_query = request.query;
+    var gameDAO = new application.app.models.gameDAO(request);
+    gameDAO.revokeAction(url_query.action_id, response);
+}

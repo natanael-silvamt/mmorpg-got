@@ -1,3 +1,5 @@
+var ObjectID = require('mongodb').ObjectID;
+
 function gameDAO(request) {
     this._request = request;
 }
@@ -50,7 +52,6 @@ gameDAO.prototype.action = function(objectAction, request){
             case 3: coins = -1 * parseInt(objectAction.quantity); break;
             case 4: coins = -1 * parseInt(objectAction.quantity); break;
         }
-     //   console.log(this._request);
         collection.update({'user': objectAction.user}, {'$inc': {'coin': coins}});
     });
 }
@@ -63,6 +64,15 @@ gameDAO.prototype.getActions = function(user, response){
          collection.find({"user": user, "action_end_in": {'$gt': nowadays}}).toArray(function(error, result){
              response.render("parchment", {actions: result});
          });
+    });
+}
+
+gameDAO.prototype.revokeAction = function(action_id, response){
+    this._request.db.collection("Action", function(error, collection){
+        if(error){return console.dir(error);}
+        collection.remove({'_id': ObjectID(action_id)}, function(error, result){
+            response.redirect("game?msg=D");
+        });
     });
 }
 
