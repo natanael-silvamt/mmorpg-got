@@ -1,1 +1,2 @@
-*.html linguist-language=Nodejs
+*.js linguist-detectable=true
+*.html linguist-detectable=false
